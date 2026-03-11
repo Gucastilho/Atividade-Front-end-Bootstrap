@@ -47,3 +47,60 @@ main {
     height: 200px;
     object-fit: cover;
 }
+
+.bg-gradient-custom {
+    background: linear-gradient(135deg, #2e7d32 0%, #43a047 100%) !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.logo-img {
+    height: 55px;
+    width: auto;
+    margin-right: 12px;
+    border-radius: 0;
+    background-color: transparent;
+    padding: 0;
+    object-fit: contain;
+}
+
+.navbar-nav .nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+}
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 8px;
+    background-color: #fff;
+    transition: width 0.3s ease-in-out;
+}
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after {
+    width: calc(100% - 16px);
+}
+
+.footer-custom {
+    background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+    color: #e8f5e9;
+}
+
+.footer-social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,0.1);
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.footer-social-icon:hover {
+    background-color: #fff;
+    color: #2e7d32;
+    transform: translateY(-3px);
+}
