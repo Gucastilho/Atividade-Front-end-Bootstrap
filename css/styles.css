@@ -57,9 +57,6 @@ main {
     height: 55px;
     width: auto;
     margin-right: 12px;
-    border-radius: 0;
-    background-color: transparent;
-    padding: 0;
     object-fit: contain;
 }
 
@@ -67,9 +64,6 @@ main {
     height: 40px;
     width: auto;
     margin-right: 12px;
-    border-radius: 0;
-    background-color: transparent;
-    padding: 0;
     object-fit: contain;
 }
 
