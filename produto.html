@@ -32,17 +32,16 @@
     <main class="container mt-5">
         <div class="row bg-white p-5 rounded shadow-sm">
             <div class="col-md-6 mb-4">
-                <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=600&h=600&fit=crop" class="img-fluid rounded" alt="Camiseta">
+                <img id="img-produto" src="" class="img-fluid rounded" alt="Produto">
             </div>
             <div class="col-md-6 d-flex flex-column justify-content-center">
-                <h2>Camiseta Orgânica</h2>
-                <h3 class="text-success my-3">R$ 89,90</h3>
-                <p class="text-muted">Produzida com algodão 100% orgânico e tingimento natural. Ideal para o dia a dia, promovendo o menor impacto ambiental possível.</p>
-                <ul class="mb-4">
-                    <li>Tamanho: Único</li>
-                    <li>Material: Algodão Reciclado</li>
-                    <li>Selo: EcoFriendly Certified</li>
-                </ul>
+                <h2 id="titulo-produto">Carregando...</h2>
+                <h3 id="preco-produto" class="text-success my-3"></h3>
+                <p id="desc-produto" class="text-muted"></p>
+                
+                <ul id="lista-detalhes" class="mb-4">
+                    </ul>
+                
                 <button class="btn btn-success btn-lg mt-auto"><i class="fa fa-cart-plus me-2"></i> Adicionar ao Carrinho</button>
             </div>
         </div>
@@ -55,5 +54,61 @@
     </footer>
 
     <script src="./bootstrap.bundle.min.js"></script>
+    
+    <script>
+        const produtos = {
+            'camisa': {
+                nome: 'Camiseta Orgânica',
+                preco: 'R$ 89,90',
+                img: './img/produtos/Camiseta.jpg',
+                desc: 'Produzida com algodão 100% orgânico e tingimento natural. Ideal para o dia a dia, promovendo o menor impacto ambiental possível.',
+                detalhes: ['Tamanho: Único', 'Material: Algodão Reciclado', 'Selo: EcoFriendly Certified']
+            },
+            'sabonete': {
+                nome: 'Sabonete Natural',
+                preco: 'R$ 25,90',
+                img: './img/produtos/Sabonete.jpg',
+                desc: 'Sabonete 100% natural feito com óleos essenciais e ingredientes orgânicos, livre de parabenos e conservantes.',
+                detalhes: ['Peso: 100g', 'Material: Glicerina Vegetal e Óleos Essenciais', 'Selo: Cruelty-Free']
+            },
+            'ecobag': {
+                nome: 'Ecobag Sustentável',
+                preco: 'R$ 45,00',
+                img: './img/produtos/EcoBag.jpg',
+                desc: 'Sacola reutilizável super resistente, ideal para compras de mercado e para substituir de vez as sacolas plásticas.',
+                detalhes: ['Tamanho: 40x40cm', 'Material: Juta e Algodão', 'Selo: Lixo Zero']
+            },
+            'bambu': {
+                nome: 'Kit Escovas de Bambu',
+                preco: 'R$ 35,50',
+                img: './img/produtos/Kit.jpg',
+                desc: 'Kit completo com escovas de dente e pente feitos de bambu 100% biodegradável.',
+                detalhes: ['Quantidade: 4 itens', 'Material: Bambu e cerdas macias', 'Selo: Planet Friendly']
+            }
+        };
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const itemId = urlParams.get('item');
+
+        if (itemId && produtos[itemId]) {
+            const prod = produtos[itemId];
+            
+            document.getElementById('img-produto').src = prod.img;
+            document.getElementById('titulo-produto').innerText = prod.nome;
+            document.getElementById('preco-produto').innerText = prod.preco;
+            document.getElementById('desc-produto').innerText = prod.desc;
+
+            const lista = document.getElementById('lista-detalhes');
+            lista.innerHTML = ''; 
+            prod.detalhes.forEach(detalhe => {
+                let li = document.createElement('li');
+                li.innerText = detalhe;
+                lista.appendChild(li);
+            });
+        } else {
+            document.getElementById('titulo-produto').innerText = 'Produto não encontrado';
+            document.getElementById('desc-produto').innerText = 'Por favor, volte à página inicial e escolha um produto válido.';
+        }
+    </script>
 </body>
 </html>
