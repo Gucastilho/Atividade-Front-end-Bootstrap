@@ -63,6 +63,16 @@ main {
     object-fit: contain;
 }
 
+.logo-img-footer {
+    height: 40px;
+    width: auto;
+    margin-right: 12px;
+    border-radius: 0;
+    background-color: transparent;
+    padding: 0;
+    object-fit: contain;
+}
+
 .navbar-nav .nav-link {
     position: relative;
     transition: color 0.3s ease;
