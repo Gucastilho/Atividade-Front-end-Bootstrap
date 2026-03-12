@@ -54,7 +54,5 @@ O projeto foi refatorado e organizado separando responsabilidades, linguagens e 
 
 ## 🌐 Acesse o Projeto Online  
 
-O site está disponível através do GitHub Pages:  
+O site está disponível através do GitHub Pages: https://atividade-front-end-bootstrap.vercel.app/ 
 
-<!-- ****Gu coloca a url do github pages aqui dentro do parenteses****
-🔗 [Acesse aqui](***TROCAR***)  -->
