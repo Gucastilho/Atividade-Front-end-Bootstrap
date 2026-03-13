@@ -56,5 +56,5 @@ O projeto foi refatorado e organizado separando responsabilidades, linguagens e 
 
 O site está disponível através do Vercel:  
 
-<!(https://atividade-front-end-bootstrap.vercel.app/)  -->-- 
-🔗 [Acesse aqui]
+
+🔗 [Acesse aqui](https://atividade-front-end-bootstrap.vercel.app/)
