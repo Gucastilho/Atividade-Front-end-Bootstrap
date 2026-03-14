@@ -1,0 +1,34 @@
+{
+    "camisa": {
+        "nome": "Camiseta Orgânica",
+        "marca": "GreenTech",
+        "preco": "R$ 89,90",
+        "img": "../assets/img/produtos/Camiseta.jpg",
+        "desc": "Produzida com algodão 100% orgânico e tingimento natural. Ideal para o dia a dia, promovendo o menor impacto ambiental possível.",
+        "detalhes": ["Tamanho: Único", "Material: Algodão Reciclado", "Selo: EcoFriendly Certified"]
+    },
+    "sabonete": {
+        "nome": "Sabonete Natural",
+        "marca": "EcoLife",
+        "preco": "R$ 25,90",
+        "img": "../assets/img/produtos/Sabonete.jpg",
+        "desc": "Sabonete 100% natural feito com óleos essenciais e ingredientes orgânicos, livre de parabenos e conservantes.",
+        "detalhes": ["Peso: 100g", "Material: Glicerina Vegetal e Óleos Essenciais", "Selo: Cruelty-Free"]
+    },
+    "ecobag": {
+        "nome": "Ecobag Sustentável",
+        "marca": "GreenTech",
+        "preco": "R$ 45,00",
+        "img": "../assets/img/produtos/EcoBag.jpg",
+        "desc": "Sacola reutilizável super resistente, ideal para compras de mercado e para substituir de vez as sacolas plásticas.",
+        "detalhes": ["Tamanho: 40x40cm", "Material: Juta e Algodão", "Selo: Lixo Zero"]
+    },
+    "bambu": {
+        "nome": "Kit Escovas de Bambu",
+        "marca": "EcoLife",
+        "preco": "R$ 35,50",
+        "img": "../assets/img/produtos/Kit.jpg",
+        "desc": "Kit completo com escovas de dente e pente feitos de bambu 100% biodegradável.",
+        "detalhes": ["Quantidade: 4 itens", "Material: Bambu e cerdas macias", "Selo: Planet Friendly"]
+    }
+}

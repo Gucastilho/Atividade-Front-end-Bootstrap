@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>EcoTrend - Home</title>
-    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="../js/read_products.js"></script>
 </head>
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-custom sticky-top py-3">
         <div class="container">
             
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <img src="./img/banners/logo.jpg" alt="Logo EcoTrend" class="logo-img">
+            <a class="navbar-brand d-flex align-items-center" href="../index.html">
+                <img src="../assets/img/banners/logo.jpg" alt="Logo EcoTrend" class="logo-img">
             </a>
 
             <button class="navbar-toggler border-0 shadow-none" data-bs-toggle="collapse" data-bs-target="#menu">
@@ -23,7 +25,7 @@
 
             <div class="collapse navbar-collapse" id="menu">
                 <ul class="navbar-nav ms-auto align-items-center fw-semibold">
-                    <li class="nav-item"><a class="nav-link active mx-2" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active mx-2" href="../index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link mx-2" href="categorias.html">Produtos</a></li>
                     <li class="nav-item"><a class="nav-link mx-2" href="contato.html">Contato</a></li>
                     
@@ -46,7 +48,7 @@
                 <img id="img-produto" src="" class="img-fluid rounded" alt="Produto">
             </div>
             <div class="col-md-6 d-flex flex-column justify-content-center">
-                <h2 id="titulo-produto">Carregando...</h2>
+                <h2 id="nome-produto">Carregando...</h2>
                 <h3 id="preco-produto" class="text-success my-3"></h3>
                 <p id="desc-produto" class="text-muted"></p>
                 
@@ -63,8 +65,8 @@
             <div class="row mb-4">
                 
                 <div class="col-md-4 mb-3">
-                    <a href="index.html" class="d-flex align-items-center text-decoration-none mb-3">
-                        <img src="./img/banners/logo.jpg" alt="Logo EcoTrend" class="logo-img-footer">
+                    <a href="../index.html" class="d-flex align-items-center text-decoration-none mb-3">
+                        <img src="../assets/img/banners/logo.jpg" alt="Logo EcoTrend" class="logo-img-footer">
                     </a>
                     <p class="small text-light">Sua loja especializada em produtos sustentáveis. Focados em promover um estilo de vida mais consciente e sustentável.</p>
                 </div>
@@ -72,7 +74,7 @@
                 <div class="col-md-4 mb-3">
                     <h5 class="fw-bold mb-3 text-white">Navegue</h5>
                     <ul class="list-unstyled small">
-                        <li><a href="index.html" class="text-light text-decoration-none mb-2 d-block">Página Inicial</a></li>
+                        <li><a href="../index.html" class="text-light text-decoration-none mb-2 d-block">Página Inicial</a></li>
                         <li><a href="categorias.html" class="text-light text-decoration-none mb-2 d-block">Nossos Produtos</a></li>
                         <li><a href="contato.html" class="text-light text-decoration-none mb-2 d-block">Fale Conosco</a></li>
                     </ul>
@@ -96,63 +98,5 @@
             </div>
         </div>
     </footer>
-
-    <script src="./js/bootstrap.bundle.min.js"></script>
-    
-    <script>
-        const produtos = {
-            'camisa': {
-                nome: 'Camiseta Orgânica',
-                preco: 'R$ 89,90',
-                img: './img/produtos/Camiseta.jpg',
-                desc: 'Produzida com algodão 100% orgânico e tingimento natural. Ideal para o dia a dia, promovendo o menor impacto ambiental possível.',
-                detalhes: ['Tamanho: Único', 'Material: Algodão Reciclado', 'Selo: EcoFriendly Certified']
-            },
-            'sabonete': {
-                nome: 'Sabonete Natural',
-                preco: 'R$ 25,90',
-                img: './img/produtos/Sabonete.jpg',
-                desc: 'Sabonete 100% natural feito com óleos essenciais e ingredientes orgânicos, livre de parabenos e conservantes.',
-                detalhes: ['Peso: 100g', 'Material: Glicerina Vegetal e Óleos Essenciais', 'Selo: Cruelty-Free']
-            },
-            'ecobag': {
-                nome: 'Ecobag Sustentável',
-                preco: 'R$ 45,00',
-                img: './img/produtos/EcoBag.jpg',
-                desc: 'Sacola reutilizável super resistente, ideal para compras de mercado e para substituir de vez as sacolas plásticas.',
-                detalhes: ['Tamanho: 40x40cm', 'Material: Juta e Algodão', 'Selo: Lixo Zero']
-            },
-            'bambu': {
-                nome: 'Kit Escovas de Bambu',
-                preco: 'R$ 35,50',
-                img: './img/produtos/Kit.jpg',
-                desc: 'Kit completo com escovas de dente e pente feitos de bambu 100% biodegradável.',
-                detalhes: ['Quantidade: 4 itens', 'Material: Bambu e cerdas macias', 'Selo: Planet Friendly']
-            }
-        };
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const itemId = urlParams.get('item');
-
-        if (itemId && produtos[itemId]) {
-            const prod = produtos[itemId];
-            
-            document.getElementById('img-produto').src = prod.img;
-            document.getElementById('titulo-produto').innerText = prod.nome;
-            document.getElementById('preco-produto').innerText = prod.preco;
-            document.getElementById('desc-produto').innerText = prod.desc;
-
-            const lista = document.getElementById('lista-detalhes');
-            lista.innerHTML = ''; 
-            prod.detalhes.forEach(detalhe => {
-                let li = document.createElement('li');
-                li.innerText = detalhe;
-                lista.appendChild(li);
-            });
-        } else {
-            document.getElementById('titulo-produto').innerText = 'Produto não encontrado';
-            document.getElementById('desc-produto').innerText = 'Por favor, volte à página inicial e escolha um produto válido.';
-        }
-    </script>
 </body>
 </html>
