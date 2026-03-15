@@ -142,5 +142,9 @@
     </footer>
 
     <script src="../js/bootstrap.bundle.min.js"></script>
+    <script type="module">
+        import { updateCartBadge } from '../js/cart.js';
+        document.addEventListener('DOMContentLoaded', updateCartBadge);
+    </script>
 </body>
 </html>

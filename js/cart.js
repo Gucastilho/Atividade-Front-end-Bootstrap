@@ -1,20 +1,49 @@
-import sortByAttribute from './filter.js';
+export function getCart() {
+    return JSON.parse(localStorage.getItem('cart') || '{}');
+}
+
+export function saveCart(cart) {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
 
 export function addProductToCart(itemId, product) {
-    const cart = JSON.parse(localStorage.getItem('cart') || '{}');
+    const cart = getCart();
+    const priceNum = parseFloat(product.preco.replace('R$', '').replace('.', '').replace(',', '.').trim());
 
     if (cart[itemId]) {
         cart[itemId].quantity += 1;
     } else {
-        cart[itemId] = { ...product, quantity: 1 };
+        cart[itemId] = { ...product, priceNum, quantity: 1 };
     }
 
-    localStorage.setItem('cart', JSON.stringify(cart));
-    console.log(localStorage)
-    sortByAttribute("Preco")
+    saveCart(cart);
+    updateCartBadge();
 
-    return new Promise((resolve) => {
-        setTimeout(() => { 
-            resolve(`${product.nome} adicionado ao carrinho.`)}, 1000);
-    });
+    return new Promise(resolve =>
+        setTimeout(() => resolve(`${product.nome} adicionado ao carrinho!`), 300)
+    );
+}
+
+export function removeFromCart(itemId) {
+    const cart = getCart();
+    delete cart[itemId];
+    saveCart(cart);
+    updateCartBadge();
+}
+
+export function updateQty(itemId, qty) {
+    const cart = getCart();
+    if (!cart[itemId]) return;
+    cart[itemId].quantity = Math.max(1, qty);
+    saveCart(cart);
+    updateCartBadge();
+}
+
+export function getCartCount() {
+    return Object.values(getCart()).reduce((sum, item) => sum + item.quantity, 0);
+}
+
+export function updateCartBadge() {
+    const badge = document.querySelector('.navbar .badge');
+    if (badge) badge.textContent = getCartCount();
 }
