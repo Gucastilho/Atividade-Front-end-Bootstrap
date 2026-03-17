@@ -13,7 +13,7 @@ function renderCart() {
     const mainContent = document.getElementById('mainContent');
     const items = Object.entries(cart);
 
-    updateCartBadge();
+    updateCartItemCount();
     updateHeroCount(items);
 
     if (items.length === 0) {
@@ -26,29 +26,30 @@ function renderCart() {
     emptyState.style.display = 'none';
     container.innerHTML = '';
 
+    const skeleton = document.getElementById('item-skeleton');
+
     items.forEach(([id, item]) => {
-        const row = document.createElement('div');
-        row.className = 'item-row d-flex align-items-center gap-3';
+        const row = skeleton.cloneNode(true);
         row.id = `item-${id}`;
-        row.innerHTML = `
-            <div class="item-img">
-                <img src="${item.img}" alt="${item.nome}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.parentElement.textContent='🛍️'">
-            </div>
-            <div class="flex-grow-1">
-                <div class="item-title">${item.nome}</div>
-                <div class="item-sub">${item.marca || ''}</div>
-                <div class="mt-2 d-flex align-items-center gap-3 flex-wrap">
-                    <div class="qty-control">
-                        <button class="qty-btn" data-id="${id}" data-delta="-1">−</button>
-                        <input class="qty-input" data-id="${id}" value="${item.quantity}" min="1" type="number"/>
-                        <button class="qty-btn" data-id="${id}" data-delta="1">+</button>
-                    </div>
-                    <span class="item-price">${formatBRL(item.priceNum * item.quantity)}</span>
-                    <span class="item-unit-price" style="font-size:.78rem;color:var(--muted)">(${formatBRL(item.priceNum)} un.)</span>
-                </div>
-            </div>
-            <button class="btn-remove" data-id="${id}" title="Remover"><i class="bi bi-trash3"></i></button>
-        `;
+        row.hidden = false;
+
+        const img = row.querySelector('#item-img');
+        img.src = item.img;
+        img.alt = item.nome;
+        img.onerror = () => img.parentElement.textContent = '🛍️';
+
+        row.querySelector('#item-title').textContent = item.nome;
+        row.querySelector('#item-sub').textContent = item.marca || '';
+        row.querySelector('#item-price').textContent = formatBRL(item.priceNum * item.quantity);
+        row.querySelector('#item-unit').textContent = `(${formatBRL(item.priceNum)} un.)`;
+
+        const qty = row.querySelector('#item-qty');
+        qty.value = item.quantity;
+        qty.dataset.id = id;
+
+        row.querySelectorAll('.qty-btn').forEach(btn => btn.dataset.id = id);
+        row.querySelector('#item-remove').dataset.id = id;
+
         container.appendChild(row);
     });
 
@@ -128,6 +129,8 @@ window.showToast = function (name) {
 
 window.checkout = function () {
     alert('Redirecionando para o pagamento...');
+    localStorage.clear();
+    window.location.href = '../index.html'
 };
 
 document.addEventListener('DOMContentLoaded', renderCart);

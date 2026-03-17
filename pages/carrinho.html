@@ -25,7 +25,7 @@
                     <li class="nav-item"><a class="nav-link mx-2" href="categorias.html">Produtos</a></li>
                     <li class="nav-item"><a class="nav-link mx-2" href="contato.html">Contato</a></li>
                     <li class="nav-item ms-3">
-                        <a href="./carrinho.html" class="text-white position-relative mt-1">
+                        <a href="./update_cart.html" class="text-white position-relative mt-1">
                             <i class="fa fa-shopping-cart fa-lg"></i>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark" style="font-size:.6rem">0</span>
                         </a>
@@ -47,126 +47,79 @@
             <p class="mb-0">0 itens &nbsp;·&nbsp; <span class="frete-tag"><i class="bi bi-truck"></i> Frete grátis acima de R$150</span></p>
         </div>
     </section>
-
-    <!-- MAIN -->
     <div id="mainContent">
         <main class="container py-4">
             <div class="row g-4">
-
-                <!-- ITEMS COLUMN -->
                 <div class="col-lg-8">
-
-                    <!-- COUPON -->
-                    <div class="d-flex mb-3">
-                        <input class="coupon-input" type="text" placeholder="Cupom de desconto (ex: SAVE10)" id="couponInput"/>
-                        <button class="btn-coupon" onclick="applyCoupon()">Aplicar</button>
-                    </div>
-
-                    <!-- CART ITEMS (renderizado via JS) -->
-                    <div class="cart-card" id="cartItems"></div>
-
-                    <!-- RECOMENDADOS -->
-                    <div class="mt-5">
-                        <div class="section-title">Você também pode gostar</div>
-                        <div class="row g-3">
-                            <div class="col-6 col-md-3">
-                                <div class="rec-card">
-                                    <div class="rec-img">🧢</div>
-                                    <div class="rec-body">
-                                        <div class="rec-name">Boné Snapback</div>
-                                        <div class="d-flex justify-content-between align-items-center mt-2">
-                                            <span class="rec-price">R$ 69,90</span>
-                                            <button class="btn-add-rec" onclick="showToast('Boné Snapback')"><i class="bi bi-plus"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <div class="rec-card">
-                                    <div class="rec-img">🧦</div>
-                                    <div class="rec-body">
-                                        <div class="rec-name">Kit Meias Sport (3 pares)</div>
-                                        <div class="d-flex justify-content-between align-items-center mt-2">
-                                            <span class="rec-price">R$ 39,90</span>
-                                            <button class="btn-add-rec" onclick="showToast('Kit Meias')"><i class="bi bi-plus"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <div class="rec-card">
-                                    <div class="rec-img">🩳</div>
-                                    <div class="rec-body">
-                                        <div class="rec-name">Bermuda Treino</div>
-                                        <div class="d-flex justify-content-between align-items-center mt-2">
-                                            <span class="rec-price">R$ 89,90</span>
-                                            <button class="btn-add-rec" onclick="showToast('Bermuda Treino')"><i class="bi bi-plus"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <div class="rec-card">
-                                    <div class="rec-img">⌚</div>
-                                    <div class="rec-body">
-                                        <div class="rec-name">Relógio Esportivo</div>
-                                        <div class="d-flex justify-content-between align-items-center mt-2">
-                                            <span class="rec-price">R$ 199,90</span>
-                                            <button class="btn-add-rec" onclick="showToast('Relógio Esportivo')"><i class="bi bi-plus"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div><!-- /items col -->
-
-                <!-- SUMMARY COLUMN -->
-                <div class="col-lg-4">
-                    <div class="summary-card">
-                        <h5>Resumo do Pedido</h5>
-                        <div class="summary-row">
-                            <span id="subtotalLabel">Subtotal</span>
-                            <span id="subtotal">R$ 0,00</span>
-                        </div>
-                        <div class="summary-row discount" id="discountRow" style="display:none">
-                            <span><i class="bi bi-tag-fill me-1"></i>Desconto (10%)</span>
-                            <span id="discountVal">− R$ 0,00</span>
-                        </div>
-                        <div class="summary-row">
-                            <span>Frete</span>
-                            <span class="text-success fw-semibold">Grátis</span>
-                        </div>
-                        <div class="summary-row total">
-                            <span>Total</span>
-                            <span id="total">R$ 0,00</span>
-                        </div>
-                        <button class="btn-checkout" onclick="checkout()">
-                            <i class="bi bi-lock-fill me-2"></i>Finalizar Compra
-                        </button>
-                        <a href="categorias.html" class="btn-continue">
-                            <i class="bi bi-arrow-left me-1"></i> Continuar comprando
-                        </a>
-                        <hr style="border-color:var(--border); margin:1.2rem 0 0.8rem">
-                        <div class="text-center mb-2" style="font-size:0.78rem; color:var(--muted)">Pagamentos aceitos</div>
-                        <div class="d-flex flex-wrap pay-icons justify-content-center">
-                            <span class="pay-icon">Visa</span>
-                            <span class="pay-icon">Master</span>
-                            <span class="pay-icon">Pix</span>
-                            <span class="pay-icon">Boleto</span>
-                        </div>
-                        <div class="text-center mt-3" style="font-size:0.78rem; color:var(--muted)">
-                            <i class="bi bi-shield-check text-success me-1"></i>Compra 100% segura
-                        </div>
-                    </div>
+                <div class="discount-bar d-flex mb-3">
+                    <i class="bi bi-tag-fill discount-bar-icon"></i>
+                    <input class="coupon-input" type="text" placeholder="Cupom de desconto (ex: SAVE10)" id="couponInput"/>
+                    <button class="btn-coupon" onclick="applyCoupon()">Aplicar</button>
                 </div>
 
+                <div id="item-skeleton" class="item-row d-flex align-items-center gap-3" hidden>
+                    <div class="item-img">
+                        <img id="item-img" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    </div>
+                    <div class="flex-grow-1">
+                        <div id="item-title" class="item-title"></div>
+                        <div id="item-sub" class="item-sub"></div>
+                        <div class="mt-2 d-flex align-items-center gap-3 flex-wrap">
+                            <div class="qty-control">
+                                <button class="qty-btn" data-delta="-1">−</button>
+                                <input id="item-qty" class="qty-input" min="1" type="number">
+                                <button class="qty-btn" data-delta="1">+</button>
+                            </div>
+                            <span id="item-price" class="item-price"></span>
+                            <span id="item-unit" class="item-unit-price" style="font-size:.78rem;color:var(--muted)"></span>
+                        </div>
+                    </div>
+                    <button id="item-remove" class="btn-remove" title="Remover"><i class="bi bi-trash3"></i></button>
+                </div>
+                <div class="cart-card" id="cartItems"></div>
+            </div>
+            <div class="col-lg-4">
+                <div class="summary-card">
+                    <h5>Resumo do Pedido</h5>   
+                    <div class="summary-row">
+                        <span id="subtotalLabel">Subtotal</span>
+                        <span id="subtotal">R$ 0,00</span>
+                    </div>
+                    <div class="summary-row discount" id="discountRow" style="display:none">
+                        <span><i class="bi bi-tag-fill me-1"></i>Desconto (10%)</span>
+                        <span id="discountVal">− R$ 0,00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Frete</span>
+                        <span class="text-success fw-semibold">Grátis</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span id="total">R$ 0,00</span>
+                    </div>
+                    <button class="btn-checkout" onclick="checkout()">
+                        <i class="bi bi-lock-fill me-2"></i>Finalizar Compra
+                    </button>
+                    <a href="categorias.html" class="btn-continue">
+                        <i class="bi bi-arrow-left me-1"></i> Continuar comprando
+                    </a>
+                    <hr style="border-color:var(--border); margin:1.2rem 0 0.8rem">
+                    <div class="text-center mb-2" style="font-size:0.78rem; color:var(--muted)">Pagamentos aceitos</div>
+                    <div class="d-flex flex-wrap pay-icons justify-content-center">
+                        <span class="pay-icon">Visa</span>
+                        <span class="pay-icon">Master</span>
+                        <span class="pay-icon">Pix</span>
+                        <span class="pay-icon">Boleto</span>
+                    </div>
+                    <div class="text-center mt-3" style="font-size:0.78rem; color:var(--muted)">
+                        <i class="bi bi-shield-check text-success me-1"></i>Compra 100% segura
+                    </div>
+                </div>
+            </div>
             </div>
         </main>
     </div>
 
-    <!-- EMPTY STATE -->
     <div id="emptyState" style="display:none" class="text-center py-5">
         <div style="font-size:4rem">🛒</div>
         <h4 class="mt-3">Seu carrinho está vazio</h4>
@@ -174,7 +127,6 @@
         <a href="categorias.html" class="btn-checkout d-inline-block" style="width:auto; padding:.8rem 2rem; border-radius:12px; text-decoration:none">Ver Produtos</a>
     </div>
 
-    <!-- TOAST -->
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="liveToast" class="toast align-items-center text-bg-dark border-0" role="alert">
             <div class="d-flex">
@@ -218,6 +170,6 @@
     </footer>
 
     <script src="../js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="../js/carrinho.js"></script>
+    <script type="module" src="../js/update_cart.js"></script>
 </body>
 </html>
