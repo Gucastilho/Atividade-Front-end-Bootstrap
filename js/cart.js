@@ -17,7 +17,7 @@ export function addProductToCart(itemId, product) {
     }
 
     saveCart(cart);
-    updateCartItemCount();
+    updateCartBadge();
 
     return new Promise(resolve =>
         setTimeout(() => resolve(`${product.nome} adicionado ao carrinho!`), 300)
@@ -36,14 +36,14 @@ export function updateQty(itemId, qty) {
     if (!cart[itemId]) return;
     cart[itemId].quantity = Math.max(1, qty);
     saveCart(cart);
-    updateCartItemCount();
+    updateCartBadge();
 }
 
 export function getCartCount() {
     return Object.values(getCart()).reduce((sum, item) => sum + item.quantity, 0);
 }
 
-export function updateCartItemCount() {
+export function updateCartBadge() {
     const badge = document.querySelector('.navbar .badge');
     if (badge) badge.textContent = getCartCount();
 }
