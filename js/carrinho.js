@@ -1,4 +1,4 @@
-import { getCart, removeFromCart, updateQty, updateCartBadge } from './cart.js';
+import { getCart, removeFromCart, updateQty, updateCartBadge, addProductToCart } from './cart.js';
 
 let discountPct = 0;
 
@@ -130,4 +130,33 @@ window.checkout = function () {
     alert('Redirecionando para o pagamento...');
 };
 
-document.addEventListener('DOMContentLoaded', renderCart);
+async function renderRecommended() {
+    const res = await fetch('../lib/products_info.json');
+    const products = await res.json();
+    const container = document.getElementById('recProducts');
+    container.innerHTML = Object.entries(products).map(([id, p]) => `
+        <div class="col-6 col-md-3">
+            <div class="rec-card">
+                <div class="rec-img"><img src="${p.img}" alt="${p.nome}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.parentElement.textContent='🛍️'"></div>
+                <div class="rec-body">
+                    <div class="rec-name">${p.nome}</div>
+                    <div class="d-flex justify-content-between align-items-center mt-2">
+                        <span class="rec-price">${p.preco}</span>
+                        <button class="btn-add-rec" data-id="${id}"><i class="bi bi-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    container.querySelectorAll('.btn-add-rec').forEach(btn => {
+        btn.addEventListener('click', async () => {
+            const id = btn.dataset.id;
+            const msg = await addProductToCart(id, products[id]);
+            showToast(msg);
+            renderCart();
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => { renderCart(); renderRecommended(); });

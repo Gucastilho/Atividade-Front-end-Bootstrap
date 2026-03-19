@@ -23,8 +23,8 @@
 
             <div class="collapse navbar-collapse" id="menu">
                 <ul class="navbar-nav ms-auto align-items-center fw-semibold">
-                    <li class="nav-item"><a class="nav-link active mx-2" href="../index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link mx-2" href="categorias.html">Produtos</a></li>
+                    <li class="nav-item"><a class="nav-link  mx-2" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active mx-2" href="categorias.html">Produtos</a></li>
                     <li class="nav-item"><a class="nav-link mx-2" href="contato.html">Contato</a></li>
                     
                     <li class="nav-item ms-3">
@@ -47,57 +47,22 @@
                     <h4>Filtros</h4>
                     <hr>
                     <label class="form-label mt-3">Preço Máximo: <span id="precoValor">R$ 200</span></label>
-                    <input type="range" class="form-range" min="0" max="500" value="200" oninput="document.getElementById('precoValor').innerText = 'R$ ' + this.value">
+                    <input type="range" class="form-range" id="precoRange" min="0" max="200" value="200" step="5">
 
                     <label class="form-label mt-3">Marca</label>
-                    <select class="form-select">
-                        <option>Todas</option>
-                        <option>EcoLife</option>
-                        <option>GreenTech</option>
+                    <select class="form-select" id="marcaSelect">
+                        <option value="todas">Todas</option>
+                        <option value="EcoLife">EcoLife</option>
+                        <option value="GreenTech">GreenTech</option>
                     </select>
+
+                    <button class="btn btn-outline-secondary btn-sm w-100 mt-3" id="btnLimpar">Limpar Filtros</button>
                 </div>
             </aside>
 
             <section class="col-md-9">
-                <div class="produto-grid mt-0">
-                    
-                    <div class="card">
-                        <img src="../assets/img/produtos/Camiseta.jpg" class="card-img-top" alt="Camiseta Orgânica">
-                        <div class="card-body text-center">
-                            <h5>Camiseta Orgânica</h5>
-                            <p class="text-success fw-bold">R$ 89,90</p>
-                            <a href="produto.html?item=camisa" class="btn btn-success w-100 mb-2">Adicionar ao Carrinho</a>
-                        </div>
-                    </div>
-                    
-                    <div class="card">
-                        <img src="../assets/img/produtos/Sabonete.jpg" class="card-img-top" alt="Sabonete Natural">
-                        <div class="card-body text-center">
-                            <h5>Sabonete Natural</h5>
-                            <p class="text-success fw-bold">R$ 25,90</p>
-                            <a href="produto.html?item=sabonete" class="btn btn-success w-100 mb-2">Adicionar ao Carrinho</a>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <img src="../assets/img/produtos/EcoBag.jpg" class="card-img-top" alt="Ecobag Sustentável">
-                        <div class="card-body text-center">
-                            <h5>Ecobag Sustentável</h5>
-                            <p class="text-success fw-bold">R$ 45,00</p>
-                            <a href="produto.html?item=ecobag" class="btn btn-success w-100 mb-2">Adicionar ao Carrinho</a>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <img src="../assets/img/produtos/Kit.jpg" class="card-img-top" alt="Kit Escovas Bambu">
-                        <div class="card-body text-center">
-                            <h5>Kit Escovas Bambu</h5>
-                            <p class="text-success fw-bold">R$ 35,50</p>
-                            <a href="produto.html?item=bambu" class="btn btn-success w-100 mb-2">Adicionar ao Carrinho</a>
-                        </div>
-                    </div>
-
-                </div>
+                <div class="produto-grid mt-0" id="productGrid"></div>
+                <p id="noResults" class="text-muted text-center mt-4" style="display:none">Nenhum produto encontrado.</p>
             </section>
         </div>
     </main>
@@ -142,9 +107,6 @@
     </footer>
 
     <script src="../js/bootstrap.bundle.min.js"></script>
-    <script type="module">
-        import { updateCartBadge } from '../js/cart.js';
-        document.addEventListener('DOMContentLoaded', updateCartBadge);
-    </script>
+    <script type="module" src="../js/filter.js"></script>
 </body>
 </html>
