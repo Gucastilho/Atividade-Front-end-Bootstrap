@@ -31,7 +31,7 @@ export function removeFromCart(itemId) {
     updateCartBadge();
 }
 
-export function updateQty(itemId, qty) {
+export function updateCartItems(itemId, qty) {
     const cart = getCart();
     if (!cart[itemId]) return;
     cart[itemId].quantity = Math.max(1, qty);

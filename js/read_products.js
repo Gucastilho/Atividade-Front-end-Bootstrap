@@ -1,5 +1,5 @@
 import produtos from '../lib/products_info.json' with { type: "json" };
-import { addProductToCart, updateCartBadge } from './cart.js';
+import { addProductToCart, updateCartBadge } from './update_cart.js';
 
 const urlParams = new URLSearchParams(window.location.search);
 const itemId = urlParams.get('item');

@@ -1,4 +1,4 @@
-import { updateCartBadge, addProductToCart } from './cart.js';
+import { updateCartBadge, addProductToCart } from './update_cart.js';
 
 let allProducts = {};
 

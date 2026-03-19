@@ -1,4 +1,4 @@
-import { getCart, removeFromCart, updateQty, updateCartBadge, addProductToCart } from './cart.js';
+import { getCart, removeFromCart, updateCartItems, updateCartBadge, addProductToCart } from './update_cart.js';
 
 let discountPct = 0;
 
@@ -14,7 +14,7 @@ function renderCart() {
     const items = Object.entries(cart);
 
     updateCartBadge();
-    updateHeroCount(items);
+    updateProductText(items);
 
     if (items.length === 0) {
         mainContent.style.display = 'none';
@@ -52,11 +52,11 @@ function renderCart() {
         container.appendChild(row);
     });
 
-    bindEvents();
-    updateTotals();
+    updateCartContainer();
+    updatePurchaseTotalValue();
 }
 
-function bindEvents() {
+function updateCartContainer() {
     document.querySelectorAll('.qty-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const id = btn.dataset.id;
@@ -64,7 +64,7 @@ function bindEvents() {
             const cart = getCart();
             const newQty = (cart[id]?.quantity || 1) + delta;
             if (newQty < 1) return;
-            updateQty(id, newQty);
+            updateCartItems(id, newQty);
             renderCart();
         });
     });
@@ -73,7 +73,7 @@ function bindEvents() {
         input.addEventListener('change', () => {
             const id = input.dataset.id;
             const val = parseInt(input.value);
-            if (val >= 1) { updateQty(id, val); renderCart(); }
+            if (val >= 1) { updateCartItems(id, val); renderCart(); }
         });
     });
 
@@ -85,7 +85,7 @@ function bindEvents() {
     });
 }
 
-function updateTotals() {
+function updatePurchaseTotalValue() {
     const cart = getCart();
     const subtotal = Object.values(cart).reduce((sum, item) => sum + item.priceNum * item.quantity, 0);
     const discount = subtotal * discountPct;
@@ -103,7 +103,7 @@ function updateTotals() {
     }
 }
 
-function updateHeroCount(items) {
+function updateProductText(items) {
     const total = items.reduce((sum, [, item]) => sum + item.quantity, 0);
     const heroP = document.querySelector('.page-hero p');
     if (heroP) {
@@ -111,17 +111,7 @@ function updateHeroCount(items) {
     }
 }
 
-window.applyCoupon = function () {
-    const code = document.getElementById('couponInput').value.trim().toUpperCase();
-    if (code === 'SAVE10') {
-        discountPct = 0.10;
-        updateTotals();
-    } else {
-        alert('Cupom inválido.');
-    }
-};
-
-window.showToast = function (name) {
+window.showRecommended = function (name) {
     document.getElementById('toastMsg').textContent = name + ' adicionado ao carrinho!';
     new bootstrap.Toast(document.getElementById('liveToast')).show();
 };
@@ -153,7 +143,7 @@ async function renderRecommended() {
         btn.addEventListener('click', async () => {
             const id = btn.dataset.id;
             const msg = await addProductToCart(id, products[id]);
-            showToast(msg);
+            showRecommended(msg);
             renderCart();
         });
     });
